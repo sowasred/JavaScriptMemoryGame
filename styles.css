@@ -1,0 +1,129 @@
+/* Step 1 - Add a nice background */
+body {
+    background-image: url(Images/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    background-size:cover;
+
+}
+
+
+/* Step 2 - Add a nice card style */
+.card {    
+    width:  1.5em;
+    height: 2.5em;
+    background-color: gray;
+    border:solid 1px black;
+    font-size: 3em;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+    margin: 15px;   
+}
+
+/* Step 3 - Add a nice hover effect */
+.card:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+    background-color: #fff;
+    border: solid 3px;
+    border-radius: 20px;
+}
+
+/* Step 4 (+4 points) - Write a style for a flipped card */
+.card.flipped {       
+      opacity: 0.1;
+      transition : 0.5s !important;
+       background: #dddddd;
+}
+
+/* Step 5 - Add a nice style to the message element */
+#message {
+    font-size:3em;
+    color: white;
+    font-style: bold;
+    margin-left: 150px;
+    
+   
+}
+
+/* Step 6 - Add 5 more style changes... */
+/* 1) */
+
+#start {
+    width: 500px;
+    font-size: 1em;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-style: double;
+    border-radius: 20px;
+    padding: 20px;
+    display: block;
+    margin: 40px auto;
+}
+
+#start:hover{
+    background-color: green;
+    transition: 0.9s;
+    
+}
+
+/* 2) */
+#reset {
+    font-size: 2em;
+    border: none;
+    background-color: red;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    margin: 10px auto;
+}
+
+/*3) */
+
+#reset:hover{
+    transition: 0.5s;
+    border-radius: 20px;
+    
+}
+
+
+/* 4) */
+
+footer {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin:50px;
+}
+/* 5) */
+.rotated:not(:empty) {    
+    transform: rotateY(180deg);
+   
+}  
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+} 
+
+.card > span 
+{
+    transform: rotateY(180deg);
+    position: absolute;
+   
+}
+
+
+#score{
+  
+    text-align: right;
+    color: white;
+    font-size:1.5em;
+}
+
+
+
