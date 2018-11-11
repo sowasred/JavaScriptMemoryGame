@@ -1,4 +1,4 @@
-/* Step 1 - Add a nice background */
+/*  Add a nice background */
 body {
     background-image: url(Images/bg.jpg);
     background-repeat: no-repeat;
@@ -9,7 +9,7 @@ body {
 }
 
 
-/* Step 2 - Add a nice card style */
+/*  Add a nice card style */
 .card {    
     width:  1.5em;
     height: 2.5em;
@@ -22,7 +22,7 @@ body {
     margin: 15px;   
 }
 
-/* Step 3 - Add a nice hover effect */
+/*  Add a nice hover effect */
 .card:hover {
     transform: scale(1.1);
     transition: 0.3s;
@@ -31,14 +31,14 @@ body {
     border-radius: 20px;
 }
 
-/* Step 4 (+4 points) - Write a style for a flipped card */
+/* Write a style for a flipped card */
 .card.flipped {       
       opacity: 0.1;
       transition : 0.5s !important;
        background: #dddddd;
 }
 
-/* Step 5 - Add a nice style to the message element */
+/* Add a nice style to the message element */
 #message {
     font-size:3em;
     color: white;
@@ -48,7 +48,7 @@ body {
    
 }
 
-/* Step 6 - Add 5 more style changes... */
+/*  Add 5 more style changes... */
 /* 1) */
 
 #start {
