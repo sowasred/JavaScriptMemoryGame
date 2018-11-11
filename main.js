@@ -1,10 +1,10 @@
-// Step 1a - Select and store the gameboard element
+// Select and store the gameboard element
 const gameboard = document.querySelector('#gameboard')
-// Step 1b - Select and store the score element
+// Select and store the score element
 const score = document.querySelector('#score')
-// Step 1c - Select and store the cards element
+//  Select and store the cards element
 const cards = document.querySelector('#cards')
-// Step 1d - Select and store the message element
+//  Select and store the message element
 const message = document.querySelector('#message')
 message.textContent = "Welcome, Click to Button to Start"
 //get reset button element
@@ -64,12 +64,12 @@ function StartGame(option) {
 
   var state = false
 
-  // Step 2a - Create a function to shuffle the deck
+  // S Create a function to shuffle the deck
   function shuffleDeck () {
-    // Step 2b - Create a placeholder array
+    // Create a placeholder array
     let tmp = []  
 
-    // Step 2c - Iterate through card values 4 times
+    //  Iterate through card values 4 times
     for (let i = 0; i < 4; i++) {
       for(let cardValue of cardValues) {
         tmp.push(cardValue)
@@ -90,34 +90,34 @@ function StartGame(option) {
     
   }
 
-  // Step 2g - Call the shuffleDeck function
+  // Call the shuffleDeck function
   shuffleDeck()
 
-  // Step 3a - Create an array to store 2 players
+  // Create an array to store 2 players
   var player1 = 0
   var player2 = 0
   var players = [player1, player2]
 
-  // Step 3b - Create a variable to store the current player
+  //  Create a variable to store the current player
   var currentPlayer = 0
 
-  // Step 3c - Create a variable to store the first selected card
+  //Create a variable to store the first selected card
   var currentCard = null
 
 
-  // Step 4 - Iterate through the deck and bind a click event to each one
+  // Iterate through the deck and bind a click event to each one
   for(let card of deck) {
-    // Step 4a - Create a new div element to be a card
+    //  Create a new div element to be a card
     let cardEle = document.createElement('div')
     let cardEleValue = document.createElement('span')
 
-    // Step 3b - Add a 'card' class to the class list on the new div element
+    //  Add a 'card' class to the class list on the new div element
     cardEle.classList.add('card')
 
-    // Step 3c - Add a data value to the card with the card's value in it
+    //  Add a data value to the card with the card's value in it
     cardEleValue.dataset.value = card
 
-    // Step 3c - Bind the cardSelected function
+    //  Bind the cardSelected function
     // to the click event on the cardEle
     cardEle.addEventListener('click', cardSelected)
     //append cardEleValue to cardEle
@@ -128,7 +128,7 @@ function StartGame(option) {
   }
 
 
-  // Step 5 - Create a function to store the logic
+  // Create a function to store the logic
   // for when a card is selected
   function cardSelected (event) {
     
@@ -144,23 +144,23 @@ function StartGame(option) {
         cardChildSpan.textContent = cardChildSpan.dataset.value
       },100)
       event.target.removeEventListener('click', cardSelected)
-      // Step 5a - Check if there is already a card selected
+      //  Check if there is already a card selected
       if(currentCard != null) {
         console.log("Current card:",currentCard)
-        // Step 6 - Compare the cards
+        //  Compare the cards
         if(currentCard.querySelector('span').dataset.value === cardChildSpan.dataset.value) {
           console.log("Cards are equal")
-          // Step 6b - Add a class to the 2 card elements
+          //  Add a class to the 2 card elements
           // flipping them over
           currentCard.classList.add('flipped')
           currentCard.removeEventListener('click', cardSelected)
           event.target.classList.add('flipped')
           event.target.removeEventListener('click', cardSelected)       
-          // Step 6c - Add a point to the score for this player
+          //  Add a point to the score for this player
           players[currentPlayer] += 1
           score.textContent = `Player 1: ${players[0]} - Player 2: ${players[1]}`
 
-          // Step 6d - Tell the player to go again
+          // Tell the player to go again
           // (use string interpolation to show which player you're addressing)
           message.textContent = 
           `Congratulations! Player ${currentPlayer+1}, please go again!`
@@ -179,14 +179,14 @@ function StartGame(option) {
             currentCard.classList.remove('rotated')        
             
           }, 1700)
-          // Step 6e - Provide a fail message to the player
+          //  Provide a fail message to the player
           
           setTimeout(function() {
         
-            // Step 6f - Using a ternary, change players
+            //  Using a ternary, change players
             currentPlayer = (currentPlayer === 0 ) ? 1 : 0
 
-            // Step 6g - Concatenate a message to the message element
+            //  Concatenate a message to the message element
             // advising player 2 that it's their turn now
             // (use string interpolation to show which player you're addressing)
             message.textContent = `Player ${currentPlayer + 1}, it is your turn!`
@@ -195,7 +195,7 @@ function StartGame(option) {
           }, 1750)
         }
       } else {
-        // Step 5b - Assign the card to currentCard
+        //  Assign the card to currentCard
         currentCard = event.target
         console.log("currentCard set to ",event.target)
         // Step 5c - Tell the player to select another card
@@ -203,7 +203,7 @@ function StartGame(option) {
         message.textContent = `Player ${currentPlayer+1}, please select another card`
       }
 
-      // Step 7 - Check if the board is full
+      // Check if the board is full
       if(players[0] + players[1] === deck.length/2) {
         // Step 7a - Check if one of the players has won
         if(players[0] != players[1]) {
@@ -211,7 +211,7 @@ function StartGame(option) {
           // (use string interpolation to show which player you're addressing)
           message.textContent = `Player ${(players[0] > players[1]) ? 1 : 2}, you won!!! Congratulations!`
         } else {
-          // Step 7c - Tell the players that the game has ended in a tie
+          //  Tell the players that the game has ended in a tie
           message.textContent = "The game was a tie! Nice try!"
         }
 
@@ -221,17 +221,7 @@ function StartGame(option) {
     } 
   }
 
-  // Take it further - Reset the board allowing the user to play again (Worth 20% of the final grade)
-  /*
-    Step 1 - You will need a reset button in index.html
-    Step 2 - You will need to bind an event listener
-    
-            that detects the click and executes a function
-    Step 3 - You will need to reset all the pieces on the
-            board
-    Step 4 - You will need to reset the messages
-    Step 5 - You will need to reset the players
-  */
+
 
   reset.addEventListener('click', resetGame)
 
