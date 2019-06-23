@@ -6,6 +6,7 @@ const score = document.querySelector('#score')
 const cards = document.querySelector('#cards')
 //  Select and store the message element
 const message = document.querySelector('#message')
+
 message.textContent = "Welcome, Click to Button to Start"
 //get reset button element
 const reset = document.querySelector('#reset')
@@ -18,19 +19,23 @@ reset.style.display = "none"
 // Beginning Scene of Game starts with these functions 
 function startScreen() {
   
-
   const start = document.createElement('button')  
   start.type = "button"
   start.id = "start"
-  start.textContent = "Let's Go! Start the Game"
+  start.textContent = "Start Game"
   start.addEventListener('click', startScreenButtonClicked)
   gameboard.appendChild(start)
+}
+
+function displayStartScreen() {
+  var start = document.querySelector('#start')    
+  start.style.display = "block"   
 }
 
 function startScreenButtonClicked(event) {
   let option = event.target.id
   hideStartScreen()
-  StartGame(option)
+  StartGame()
 
 }
 
@@ -39,27 +44,16 @@ function hideStartScreen() {
   start.style.display = "none"   
 }
 
-function displayStartScreen() {
-  var start = document.querySelector('#start')    
-  start.style.display = "block"   
-}
+
 // Calling start screen for beggining scene of game 
 
 startScreen()
 
 // This is the function to Start the game
-
-function StartGame(option) {
+function StartGame() {
   message.textContent = "Select a card to start"
-  var cardValues;
-  switch(option)
-  {
-    case "start":
-    cardValues = ['A', 2, 3, 4, 5, 6]
-    break
-  }
-
-
+  var cardValues = ['A', 2, 3, 4, 5]
+    
   let deck = []
 
   var state = false
@@ -68,16 +62,13 @@ function StartGame(option) {
   function shuffleDeck () {
     // Create a placeholder array
     let tmp = []  
-
     //  Iterate through card values 4 times
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i <5 ; i++) {
       for(let cardValue of cardValues) {
         tmp.push(cardValue)
       }    
     }
-    console.log(tmp)
-    var tmpLength = tmp.length
-    for(let j = 0; j< tmpLength; j++) {
+    for(let j = 0; j< tmp.length; j++) {
     // Step 2d - Using a conditional loop
       if (tmp.length != 0) {
         // Step 2e - Select a random card from the array
@@ -86,8 +77,7 @@ function StartGame(option) {
         // Step 2f - Add the card to the deck array
         deck.push(randomCard)
       }
-    }
-    
+    }    
   }
 
   // Call the shuffleDeck function
@@ -110,7 +100,8 @@ function StartGame(option) {
     //  Create a new div element to be a card
     let cardEle = document.createElement('div')
     let cardEleValue = document.createElement('span')
-
+    //append cardEleValue to cardEle
+    cardEle.appendChild(cardEleValue)
     //  Add a 'card' class to the class list on the new div element
     cardEle.classList.add('card')
 
@@ -120,8 +111,7 @@ function StartGame(option) {
     //  Bind the cardSelected function
     // to the click event on the cardEle
     cardEle.addEventListener('click', cardSelected)
-    //append cardEleValue to cardEle
-    cardEle.appendChild(cardEleValue)
+  
     //append cardEle to cards
     cards.appendChild(cardEle)
     
@@ -158,8 +148,7 @@ function StartGame(option) {
           event.target.removeEventListener('click', cardSelected)       
           //  Add a point to the score for this player
           players[currentPlayer] += 1
-          score.textContent = `Player 1: ${players[0]} - Player 2: ${players[1]}`
-
+          score.textContent = `Player 1 - Player 2 : ${players[0]} - ${players[1]}`
           // Tell the player to go again
           // (use string interpolation to show which player you're addressing)
           message.textContent = 
@@ -168,7 +157,7 @@ function StartGame(option) {
           
         } else {
           state = true
-          message.textContent = "Oh, so sorry!!! But yer' not psychic!"
+          message.textContent = ` Player ${currentPlayer + 1}, Oh you missed! `
           setTimeout(function () {
             cardChildSpan.textContent = ""
             event.target.addEventListener('click',cardSelected)
@@ -242,7 +231,7 @@ function StartGame(option) {
     players[1] = 0
     
     message.textContent = "Let's click to see what's hiding behind the cards"
-    score.textContent = `Player 1: ${players[0]} - Player 2: ${players[1]}`
+    score.textContent = `Player 1 - Player 2 : ${players[0]} - ${players[1]}`
     
     displayStartScreen()
 

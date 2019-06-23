@@ -1,6 +1,6 @@
 /*  Add a nice background */
 body {
-    background-image: url(Images/bg.jpg);
+    background-image: url(Images/bg2.jpg);
     background-repeat: no-repeat;
     background-size: auto;
     font-family: "Comic Sans MS", cursive, sans-serif;
@@ -108,6 +108,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top:10%;
 } 
 
 .card > span 
